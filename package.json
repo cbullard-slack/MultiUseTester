@@ -4,14 +4,18 @@
   "description": "A template for me to use as a base line for creating all Slack Tester applications",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://git.heroku.com/nodeexpresstemplate.git"
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "keywords": [
-    "node"
+    "node",
+    "heroku",
+    "express"
   ],
   "author": "cbullard@slack-corp.com",
   "license": "ISC"
