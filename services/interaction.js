@@ -15,9 +15,12 @@ const axiosEncodedHeader = {
   },
 };
 
-let deleteMessages = async (channelId) => {
+let deleteMessages = async (userId,channelId) => {
+    const authed_users = ["U039C0Y3W8M"]
+    console.log(authed_users.includes(userId))
+    if (authed_users.includes(userId) != true) return
   const data = await axios
-    .get("https://slack.com/api/conversations.list")
+    .get("https://slack.com/api/conversations.list",axiosEncodedHeader)
     .catch((err) => {
       console.error(err);
     });
