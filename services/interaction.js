@@ -63,9 +63,10 @@ let checkUserIsMember = async (userId, channelId) => {
 
 let joinChannel = async (channelId) => {
   const response = await axios.post(
-    `https://slack.com/api/conversations.join?channel=${channelId}`,
-    {},
-    axiosJsonHeader
+    `https://slack.com/api/conversations.join`,qs.stringify({
+      'channel': `${channelId}` 
+    }),
+    axiosEncodedHeader
   );
   try {
     console.log(response);
