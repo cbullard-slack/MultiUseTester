@@ -49,13 +49,28 @@ let checkUserIsMember = async (userId, channelId) => {
         channels.push(element.id);
       });
     }
-    console.log(`Channel Data: ${channels} is of type ${typeof response.data.channels}`);
-    if (channels.includes(userId)) console.log(true);
-    else console.log(false);
+    console.log(
+      `Channel Data: ${channels} is of type ${typeof response.data.channels}`
+    );
+    if (channels.includes(channelId)) return true;
+    else return false;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+  //console.log(response.data.channels);
+};
+
+let joinChannel = async (channelId) => {
+  const response = await axios.post(
+    `https://slack.com/api/conversations.join?channel=${channelId}`,
+    axiosEncodedHeader
+  );
+  try {
+    console.log(response);
   } catch (err) {
     console.error(err);
   }
-  //console.log(response.data.channels);
 };
 
 //https://slack.com/api/conversations.history
@@ -63,4 +78,5 @@ let checkUserIsMember = async (userId, channelId) => {
 module.exports = {
   deleteMessages,
   checkUserIsMember,
+  joinChannel,
 };
