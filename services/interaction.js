@@ -15,26 +15,43 @@ const axiosEncodedHeader = {
   },
 };
 
-let deleteMessages = async (userId,channelId) => {
-    const authed_users = ["U039C0Y3W8M"]
-    console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`)
-    console.log(authed_users.includes(userId))
-    if (authed_users.includes(userId) != true) return
+let deleteMessages = async (userId, channelId) => {
+  const authed_users = ["U039C0Y3W8M"];
+  console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`);
+  console.log(authed_users.includes(userId));
+  if (authed_users.includes(userId) != true) return;
   const data = await axios
-    .get(`https://slack.com/api/conversations.history?channel=${channelId}`,axiosEncodedHeader)
+    .get(
+      `https://slack.com/api/conversations.history?channel=${channelId}`,
+      axiosEncodedHeader
+    )
     .catch((err) => {
       console.error(err);
-    }); 
-    try {
-      console.log(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  
+    });
+  try {
+    console.log(data.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+let checkUserIsMember = async (userId, channelId) => {
+  const data = await axios
+    .get(`https://slack.com/api/users.conversations`, axiosEncodedHeader)
+    .catch((err) => {
+      console.error(err);
+    });
+
+  try {
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 //https://slack.com/api/conversations.history
 
 module.exports = {
   deleteMessages,
+  checkUserIsMember,
 };

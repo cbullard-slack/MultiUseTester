@@ -21,10 +21,10 @@ app.get("/", (req, res) => {
 
 v1.post("/interactive", (req, res) => {
   const body = JSON.parse(req.body.payload);
-  // console.log(body);
-  
-  int.deleteMessages(body.user.id,body.channel.id)
-  res.sendStatus(200); 
+  console.log(body);
+  int.checkUserIsMember("test");
+  //int.deleteMessages(body.user.id, body.channel.id);
+  res.sendStatus(200);
 });
 
 v1.post("/clear", (req, res) => {
@@ -37,10 +37,10 @@ v1.post("/auth", (req, res) => {
   res.sendStatus(200);
 });
 
-v1.get("/test", (req,res) => {
-  console.log(req.query)
-  res.sendStatus(200)
-})
+v1.get("/test", (req, res) => {
+  console.log(req.query);
+  res.sendStatus(200);
+});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
