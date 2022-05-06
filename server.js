@@ -24,7 +24,7 @@ v1.post("/interactive", (req, res) => {
   // console.log(body);
   
   int.deleteMessages(body.user.id,body.channel.id)
-  res.sendStatus(200);
+  res.sendStatus(200); 
 });
 
 v1.post("/clear", (req, res) => {
