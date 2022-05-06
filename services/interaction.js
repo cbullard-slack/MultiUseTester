@@ -25,7 +25,7 @@ let deleteMessages = async (userId,channelId) => {
     .catch((err) => {
       console.error(err);
     });
-  console.log(data);
+  console.log(data.data.channels);
 };
 
 module.exports = {
