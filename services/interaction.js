@@ -44,7 +44,7 @@ let checkUserIsMember = async (userId, channelId) => {
 
   try {
     const channels = []
-    console.log(`Channel Data: ${data.channels} is of type ${typeof data.channels}`)
+    console.log(`Channel Data: ${data} is of type ${typeof data.channels}`)
     if (channels.includes(userId)) console.log(true);
     else console.log(false);
   } catch (err) {
