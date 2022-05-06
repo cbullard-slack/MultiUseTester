@@ -25,7 +25,12 @@ let deleteMessages = async (userId,channelId) => {
     .catch((err) => {
       console.error(err);
     });
-  console.log(data.data);
+    try {
+      console.log(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  
 };
 
 //https://slack.com/api/conversations.history
