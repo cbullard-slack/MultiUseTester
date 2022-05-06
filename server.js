@@ -28,7 +28,7 @@ v1.post("/interactive", async (req, res) => {
   const isMember = await int.checkUserIsMember(user_id, channel_id);
   console.log(isMember)
   if (!isMember) await int.joinChannel(channel_id)
-  //int.deleteMessages(body.user.id, body.channel.id);
+  int.deleteMessages(body.user.id, body.channel.id);
   res.sendStatus(200);
 });
 
