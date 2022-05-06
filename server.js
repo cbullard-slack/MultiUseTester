@@ -31,8 +31,10 @@ v1.post("/interactive", async (req, res) => {
   const messages = await int.getAllMessages(body.user.id, body.channel.id);
   const timestamps = [];
   messages.forEach((message) => {
+    console.log(message)
     timestamps.push(message.ts)
   });
+  console.log(timestamps)
   await int.deleteAllMessages(timestamps,channel_id)
   res.sendStatus(200);
 });
