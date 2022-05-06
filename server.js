@@ -23,7 +23,7 @@ v1.post("/interactive", (req,res) => {
 });
 
 v1.post("/clear",(req,res) => {
-  console.log(req.payload)
+  console.log(req)
   res.sendStatus(200)
 });
 
