@@ -38,6 +38,7 @@ v1.post("/auth", (req, res) => {
 
 v1.get("/test", (req,res) => {
   console.log(req)
+  res.sendStatus(200)
 })
 
 // listen for requests :)
