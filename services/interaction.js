@@ -38,7 +38,7 @@ let getAllMessages = async (userId, channelId) => {
 };
 
 let deleteAllMessages = async (messageTs, channelId) => {
-  messageTs.forEach((timestamp) => {
+  messageTs.forEach(async (timestamp) => {
     const data = qs.stringify({
       ts: `${timestamp}`,
       channel: `${channelId}`,
