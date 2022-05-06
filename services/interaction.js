@@ -50,7 +50,7 @@ let checkUserIsMember = async (userId, channelId) => {
   } catch (err) {
     console.error(err);
   } */
-  console.log(response.data.ok)
+  console.log(response.data.channels)
 /*   const data = JSON.parse(response)*/
 //console.log(data);
 };
