@@ -18,17 +18,17 @@ app.get("/", (req, res) => {
 });
 
 v1.post("/interactive", (req,res) => {
-  console.log(req.body.payload)
+  console.log(req.body)
   res.sendStatus(200)
 });
 
 v1.post("/clear",(req,res) => {
-  console.log(req.body.payload)
+  console.log(req.body)
   res.sendStatus(200)
 });
 
 v1.post("/auth", (req,res) => {
-  console.log(req.body.payload)
+  console.log(req.body)
 });
 
 // listen for requests :)
