@@ -30,7 +30,7 @@ let getAllMessages = async (userId, channelId) => {
       console.error(err);
     });
   try {
-    console.log(data.data.messages)
+    console.log(data.data.messages);
     return data.data.messages;
   } catch (error) {
     console.error(error);
@@ -43,14 +43,17 @@ let deleteAllMessages = async (messageTs, channelId) => {
       ts: `${timestamp}`,
       channel: `${channelId}`,
     });
-    console.log(data)
-    const response = await axios.post(
-      "https://slack.com/api/chat.delete",
-      data,
-      axiosEncodedHeader
-    );
-
-    console.log(response)
+    console.log(data);
+    const response = await axios
+      .post("https://slack.com/api/chat.delete", data, axiosEncodedHeader)
+      .catch((err) => {
+        console.error(err);
+      });
+    try {
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    }
   });
 };
 
