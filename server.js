@@ -22,8 +22,9 @@ app.get("/", (req, res) => {
 v1.post("/interactive", (req, res) => {
   const body = JSON.parse(req.body.payload);
   // console.log(body);
-  int.deleteMessages(body.user.id,body.channel.id)
   res.sendStatus(200);
+  int.deleteMessages(body.user.id,body.channel.id)
+  
 });
 
 v1.post("/clear", (req, res) => {
