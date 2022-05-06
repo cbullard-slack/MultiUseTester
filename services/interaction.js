@@ -51,7 +51,7 @@ let checkUserIsMember = async (userId, channelId) => {
     console.error(err);
   } */
 
-  console.log(data.channels);
+  console.log(data['channels']);
 };
 
 //https://slack.com/api/conversations.history
