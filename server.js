@@ -36,6 +36,10 @@ v1.post("/auth", (req, res) => {
   res.sendStatus(200);
 });
 
+v1.get("/test", (req,res) => {
+  console.log(req)
+})
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
