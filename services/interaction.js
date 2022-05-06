@@ -23,7 +23,7 @@ let deleteMessages = async (userId, channelId) => {
   const data = await axios
     .get(
       `https://slack.com/api/conversations.history?channel=${channelId}`,
-      axiosEncodedHeader
+      axiosJsonHeader
     )
     .catch((err) => {
       console.error(err);
