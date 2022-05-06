@@ -43,6 +43,7 @@ let deleteAllMessages = async (messageTs, channelId) => {
       ts: `${timestamp}`,
       channel: `${channelId}`,
     });
+    console.log(data)
     const response = await axios.post(
       "https://slack.com/api/chat.delete",
       data,
