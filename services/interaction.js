@@ -44,9 +44,7 @@ let checkUserIsMember = async (userId, channelId) => {
 
   try {
     const channels = []
-    data.channels.forEach(element => {
-      channels.push()
-    });
+    console.log(data.channels)
     if (channels.includes(userId)) console.log(true);
     else console.log(false);
   } catch (err) {
