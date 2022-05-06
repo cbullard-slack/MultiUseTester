@@ -26,7 +26,7 @@ v1.post("/interactive", (req,res) => {
 
 v1.post("/clear",(req,res) => {
   console.log(req.body)
-  res.sendStatus(200)
+  res.status(200).send(areYouSureDelete)
 });
 
 v1.post("/auth", (req,res) => {
@@ -38,3 +38,45 @@ v1.post("/auth", (req,res) => {
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
+
+// Response Templates
+
+const areYouSureDelete = {
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": ":warning: This will delete *all messages* in this channel! :warning:\n\nAre you sure you wish to proceed?"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Decline",
+            "emoji": true
+          },
+          "style": "primary",
+          "action_id": "actionId-0"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Confirm",
+            "emoji": true
+          },
+          "style": "danger",
+          "action_id": "Confirm"
+        }
+      ]
+    }
+  ]
+}
