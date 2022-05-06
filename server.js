@@ -6,7 +6,7 @@ const app = express();
 
 const v1 = express.Router();
 
-app.use(express.json)
+app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 app.use("/slack/v1", v1);
