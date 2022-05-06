@@ -43,7 +43,8 @@ let checkUserIsMember = async (userId, channelId) => {
     });
 
   try {
-    console.log(data);
+    if (data.channels.includes(userId)) console.log(true);
+    else console.log(false);
   } catch (err) {
     console.error(err);
   }
