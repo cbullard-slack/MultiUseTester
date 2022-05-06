@@ -46,7 +46,7 @@ let checkUserIsMember = async (userId, channelId) => {
     const channels = [];
     if (typeof response.data.channels !== "undefined") {
       response.data.channels.forEach((element) => {
-        channels.push(element);
+        channels.push(element.id);
       });
     }
     console.log(`Channel Data: ${data} is of type ${typeof data.channels}`);
