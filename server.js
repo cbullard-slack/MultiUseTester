@@ -31,6 +31,7 @@ v1.post("/clear",(req,res) => {
 
 v1.post("/auth", (req,res) => {
   console.log(req.body)
+  res.sendStatus(200)
 });
 
 // listen for requests :)
