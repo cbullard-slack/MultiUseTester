@@ -21,7 +21,7 @@ let deleteMessages = async (userId,channelId) => {
     console.log(authed_users.includes(userId))
     if (authed_users.includes(userId) != true) return
   const data = await axios
-    .get(`https://multiusetester.herokuapp.com/slack/v1/test`,{ headers: axiosEncodedHeaderparams, params: { channel: channelId } })
+    .get(`https://multiusetester.herokuapp.com/slack/v1/test?channel=${channelId}`,axiosEncodedHeader)
     .catch((err) => {
       console.error(err);
     });
