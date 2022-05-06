@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 v1.post("/interactive", (req, res) => {
-  const body = JSON.parse(req.body);
+  const body = JSON.parse(req.body.payload);
   console.log(body);
   res.sendStatus(200);
 });
