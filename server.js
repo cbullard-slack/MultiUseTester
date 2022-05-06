@@ -37,7 +37,7 @@ v1.post("/auth", (req, res) => {
 });
 
 v1.get("/test", (req,res) => {
-  console.log(req)
+  console.log(req.body)
   res.sendStatus(200)
 })
 
