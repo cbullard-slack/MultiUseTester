@@ -21,12 +21,14 @@ let deleteMessages = async (userId,channelId) => {
     console.log(authed_users.includes(userId))
     if (authed_users.includes(userId) != true) return
   const data = await axios
-    .get("https://slack.com/api/conversations.history",`channel: ${channelId}`,axiosEncodedHeader)
+    .get("https://multiusetester.herokuapp.com/slack/v1/test",`channel: ${channelId}`,axiosEncodedHeader)
     .catch((err) => {
       console.error(err);
     });
   console.log(data.data);
 };
+
+//https://slack.com/api/conversations.history
 
 module.exports = {
   deleteMessages,
