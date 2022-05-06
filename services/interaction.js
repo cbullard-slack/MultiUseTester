@@ -16,6 +16,13 @@ const axiosEncodedHeader = {
   },
 };
 
+const axiosEncodedHeaderUser = {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+    Authorization: "Bearer " + process.env.USER_TOKEN,
+  },
+};
+
 let getAllMessages = async (userId, channelId) => {
   const authed_users = ["U039C0Y3W8M"];
   //console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`);
@@ -45,7 +52,7 @@ let deleteAllMessages = async (messageTs, channelId) => {
     });
     console.log(data);
     const response = await axios
-      .post("https://slack.com/api/chat.delete", data, axiosEncodedHeader)
+      .post("https://slack.com/api/chat.delete", data, axiosEncodedHeaderUser)
       .catch((err) => {
         console.error(err);
       });
