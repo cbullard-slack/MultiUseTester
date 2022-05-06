@@ -49,7 +49,7 @@ let checkUserIsMember = async (userId, channelId) => {
         channels.push(element.id);
       });
     }
-    console.log(`Channel Data: ${channels} is of type ${typeof data.channels}`);
+    console.log(`Channel Data: ${channels} is of type ${typeof response.data.channels}`);
     if (channels.includes(userId)) console.log(true);
     else console.log(false);
   } catch (err) {
