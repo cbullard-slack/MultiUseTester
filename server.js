@@ -1,19 +1,22 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
+//Start of the Node Express Template
 const express = require("express");
 const app = express();
 
+const v1 = express.Router();
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
+app.use("/slack/v1", v1);
+
+// Make all the files in 'public' available
 app.use(express.static("public"));
 
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/404.html");
+// Static Home Route
+app.get("/", (req, res) => {
+  req.sendFile(__dirname + "/views/404.html");
+});
+
+v1.post("/interactive", (req,res) => {
+  console.log(req.body)
+  res.sendStatus(200)
 });
 
 // listen for requests :)
