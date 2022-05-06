@@ -7,6 +7,7 @@ const app = express();
 const v1 = express.Router();
 
 app.use("/slack/v1", v1);
+app.use(express.urlencoded({extended:false}));
 
 // Make all the files in 'public' available
 app.use(express.static("public"));
