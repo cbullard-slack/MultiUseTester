@@ -42,17 +42,20 @@ let checkUserIsMember = async (userId, channelId) => {
       console.error(err);
     });
 
-/*   try {
-    const channels = []
-    console.log(`Channel Data: ${data} is of type ${typeof data.channels}`)
+  try {
+    const channels = [];
+    if (typeof response.data.channels !== "undefined") {
+      response.data.channels.forEach((element) => {
+        channels.push(element);
+      });
+    }
+    console.log(`Channel Data: ${data} is of type ${typeof data.channels}`);
     if (channels.includes(userId)) console.log(true);
     else console.log(false);
   } catch (err) {
     console.error(err);
-  } */
-  console.log(response.data.channels)
-/*   const data = JSON.parse(response)*/
-//console.log(data);
+  }
+  console.log(response.data.channels);
 };
 
 //https://slack.com/api/conversations.history
