@@ -42,14 +42,16 @@ let checkUserIsMember = async (userId, channelId) => {
       console.error(err);
     });
 
-  try {
+/*   try {
     const channels = []
     console.log(`Channel Data: ${data} is of type ${typeof data.channels}`)
     if (channels.includes(userId)) console.log(true);
     else console.log(false);
   } catch (err) {
     console.error(err);
-  }
+  } */
+
+  console.log(data);
 };
 
 //https://slack.com/api/conversations.history
