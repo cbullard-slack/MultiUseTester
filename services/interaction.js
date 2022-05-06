@@ -1,5 +1,5 @@
 const axios = require("axios");
-const qs = require("querystring")
+const qs = require("qs");
 
 const axiosJsonHeader = {
   headers: {
@@ -16,7 +16,7 @@ const axiosEncodedHeader = {
   },
 };
 
-let deleteMessages = async (userId, channelId) => {
+let getAllMessages = async (userId, channelId) => {
   const authed_users = ["U039C0Y3W8M"];
   console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`);
   console.log(authed_users.includes(userId));
@@ -30,10 +30,26 @@ let deleteMessages = async (userId, channelId) => {
       console.error(err);
     });
   try {
-    console.log(data.data);
+    return data.data.messages;
   } catch (error) {
     console.error(error);
   }
+};
+
+let deleteAllMessages = async (messageTs, channelId) => {
+  messageTs.forEach((timestamp) => {
+    const data = qs.stringify({
+      ts: `${timestamp}`,
+      channel: `${channelId}`,
+    });
+    const response = await axios.post(
+      "https://slack.com/api/chat.delete",
+      data,
+      axiosEncodedHeader
+    );
+
+    console.log(response)
+  });
 };
 
 let checkUserIsMember = async (userId, channelId) => {
@@ -64,8 +80,9 @@ let checkUserIsMember = async (userId, channelId) => {
 
 let joinChannel = async (channelId) => {
   const response = await axios.post(
-    `https://slack.com/api/conversations.join`,qs.stringify({
-      'channel': `${channelId}` 
+    `https://slack.com/api/conversations.join`,
+    qs.stringify({
+      channel: `${channelId}`,
     }),
     axiosEncodedHeader
   );
@@ -79,7 +96,8 @@ let joinChannel = async (channelId) => {
 //https://slack.com/api/conversations.history
 
 module.exports = {
-  deleteMessages,
+  getAllMessages,
   checkUserIsMember,
   joinChannel,
+  deleteAllMessages,
 };

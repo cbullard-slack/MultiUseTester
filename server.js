@@ -3,7 +3,7 @@ const express = require("express");
 const int = require("./services/interaction");
 const axios = require("axios");
 const app = express();
-const qs = require("querystring")
+const qs = require("querystring");
 
 const v1 = express.Router();
 
@@ -22,13 +22,18 @@ app.get("/", (req, res) => {
 
 v1.post("/interactive", async (req, res) => {
   const body = JSON.parse(req.body.payload);
-  const user_id = body.user.id
-  const channel_id = body.channel.id
+  const user_id = body.user.id;
+  const channel_id = body.channel.id;
   console.log(body);
   const isMember = await int.checkUserIsMember(user_id, channel_id);
-  console.log(isMember)
-  if (!isMember) await int.joinChannel(channel_id)
-  int.deleteMessages(body.user.id, body.channel.id);
+  console.log(isMember);
+  if (!isMember) await int.joinChannel(channel_id);
+  const messages = await int.getAllMessages(body.user.id, body.channel.id);
+  const timestamps = [];
+  messages.forEach((message) => {
+    timestamps.push(message.ts)
+  });
+  await int.deleteAllMessages(timestamps,channel_id)
   res.sendStatus(200);
 });
 
