@@ -1,5 +1,7 @@
 //Start of the Node Express Template
 const express = require("express");
+const int = require("./public/interaction");
+const axios  = require("axios");
 const app = express();
 
 const v1 = express.Router();
@@ -17,6 +19,14 @@ app.get("/", (req, res) => {
 v1.post("/interactive", (req,res) => {
   console.log(req.body)
   res.sendStatus(200)
+});
+
+v1.post("/clear",(req,res) => {
+  console.log(req.body)
+});
+
+v1.post("/auth", (req,res) => {
+  console.log(req.body)
 });
 
 // listen for requests :)
