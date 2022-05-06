@@ -18,8 +18,8 @@ const axiosEncodedHeader = {
 
 let getAllMessages = async (userId, channelId) => {
   const authed_users = ["U039C0Y3W8M"];
-  console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`);
-  console.log(authed_users.includes(userId));
+  //console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`);
+  //console.log(authed_users.includes(userId));
   if (authed_users.includes(userId) != true) return;
   const data = await axios
     .get(
@@ -30,6 +30,7 @@ let getAllMessages = async (userId, channelId) => {
       console.error(err);
     });
   try {
+    console.log(data.data.messages)
     return data.data.messages;
   } catch (error) {
     console.error(error);
