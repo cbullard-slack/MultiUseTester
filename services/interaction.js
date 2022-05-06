@@ -17,6 +17,7 @@ const axiosEncodedHeader = {
 
 let deleteMessages = async (userId,channelId) => {
     const authed_users = ["U039C0Y3W8M"]
+    console.log(`User ID parsed: ${userId}\nChannel ID parsed: ${channelId}\n\n`)
     console.log(authed_users.includes(userId))
     if (authed_users.includes(userId) != true) return
   const data = await axios
