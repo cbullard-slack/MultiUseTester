@@ -36,7 +36,7 @@ let deleteMessages = async (userId, channelId) => {
 };
 
 let checkUserIsMember = async (userId, channelId) => {
-  const data = await axios
+  const response = await axios
     .get(`https://slack.com/api/users.conversations`, axiosEncodedHeader)
     .catch((err) => {
       console.error(err);
@@ -50,8 +50,8 @@ let checkUserIsMember = async (userId, channelId) => {
   } catch (err) {
     console.error(err);
   } */
-
-  console.log(data[1]);
+  const data = JSON.parse(response.data)
+  console.log(data);
 };
 
 //https://slack.com/api/conversations.history
