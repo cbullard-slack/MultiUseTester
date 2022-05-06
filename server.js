@@ -22,7 +22,8 @@ v1.post("/interactive", (req,res) => {
 });
 
 v1.post("/clear",(req,res) => {
-  console.log(req.body)
+  console.log(req)
+  res.sendStatus(200)
 });
 
 v1.post("/auth", (req,res) => {
