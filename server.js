@@ -6,8 +6,10 @@ const app = express();
 
 const v1 = express.Router();
 
+app.use(express.json)
+app.use(express.urlencoded({extended:true}));
+
 app.use("/slack/v1", v1);
-app.use(express.urlencoded({extended:false}));
 
 // Make all the files in 'public' available
 app.use(express.static("public"));
@@ -23,7 +25,7 @@ v1.post("/interactive", (req,res) => {
 });
 
 v1.post("/clear",(req,res) => {
-  console.log(req)
+  console.log(req.body)
   res.status(200).send(req)
 });
 
