@@ -19,14 +19,14 @@ app.get("/", (req, res) => {
   req.sendFile(__dirname + "/views/404.html");
 });
 
-v1.post("/interactive", (req, res) => {
+v1.post("/interactive", async (req, res) => {
   const body = JSON.parse(req.body.payload);
   const user_id = body.user.id
   const channel_id = body.channel.id
   console.log(body);
-  const isMember = int.checkUserIsMember(user_id, channel_id);
+  const isMember = await int.checkUserIsMember(user_id, channel_id);
   console.log(isMember)
-  if (!isMember) int.joinChannel(channel_id)
+  if (!isMember) await int.joinChannel(channel_id)
   //int.deleteMessages(body.user.id, body.channel.id);
   res.sendStatus(200);
 });
