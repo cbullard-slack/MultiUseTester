@@ -26,11 +26,11 @@ v1.post("/interactive", async (req, res) => {
   const channel_id = body.channel.id;
   const interactiveActions = body.actions
   // console.log(body);
-  console.log(interactiveActions)
+  console.log(Object.keys(interactiveActions).length)
   const isMember = await int.checkUserIsMember(user_id, channel_id);
   //console.log(isMember);
   if (!isMember) await int.joinChannel(channel_id);
-  const messages = await int.getAllMessages(body.user.id, body.channel.id);
+  const messages = await int.getAllMessages(user_id, channel_id);
   const timestamps = [];
   messages.forEach((message) => {
     console.log(message)
