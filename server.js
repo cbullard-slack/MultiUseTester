@@ -25,9 +25,10 @@ v1.post("/interactive", async (req, res) => {
   const user_id = body.user.id;
   const channel_id = body.channel.id;
   const interactiveActions = body.actions;
+  const responseUrl = body.response_url;
   const numberOfActions = Object.keys(interactiveActions).length;
   let action_id = "";
-console.log(body);
+  console.log(body);
   if (numberOfActions > 1) {
     interactiveActions.forEach((actionBody) => {
       action_id = actionBody.action_id;
@@ -39,6 +40,7 @@ console.log(body);
   switch (action_id) {
     case "decline-delete-action":
       res.sendStatus(200);
+      await int.deleteEphemeralPopup(responseUrl);
       break;
 
     case "confirm-delete-action":
@@ -54,6 +56,7 @@ console.log(body);
       });
       console.log(timestamps);
       await int.deleteAllMessages(timestamps, channel_id);
+      await int.deleteEphemeralPopup(responseUrl);
       break;
 
     default:

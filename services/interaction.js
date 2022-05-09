@@ -105,6 +105,25 @@ let joinChannel = async (channelId) => {
   }
 };
 
+let deleteEphemeralPopup = async (response_url) => {
+  try {
+    const response = await axios
+      .post(
+        response_url,
+        {
+          delete_original: "true",
+        },
+        axiosJsonHeader
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+    console.log(response);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 //https://slack.com/api/conversations.history
 
 module.exports = {
@@ -112,4 +131,5 @@ module.exports = {
   checkUserIsMember,
   joinChannel,
   deleteAllMessages,
+  deleteEphemeralPopup,
 };
