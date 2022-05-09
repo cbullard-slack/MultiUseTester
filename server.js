@@ -81,7 +81,7 @@ v1.post("/auth", (req, res) => {
 });
 
 v1.post("/test-webhook", (req, res) => {
-  res.sendStatus(200);
+  res.status(200).send('');
   axios.post(webhook_url, webhook_payload, axiosJsonHeader);
   int.deleteEphemeralPopup(req.body.response_url)
 });
