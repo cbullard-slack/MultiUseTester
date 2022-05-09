@@ -81,7 +81,9 @@ v1.post("/auth", (req, res) => {
 });
 
 v1.post("/test-webhook", (req, res) => {
-  res.sendStatus(200);
+  res.status(200).send({
+    delete_original: "true",
+  });
   axios.post(webhook_url, webhook_payload, axiosJsonHeader);
 });
 
