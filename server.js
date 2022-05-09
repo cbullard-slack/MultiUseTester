@@ -7,6 +7,10 @@ const qs = require("querystring");
 
 const v1 = express.Router();
 
+const application_name = "Node Multi Use App";
+const webhook_url =
+  "https://hooks.slack.com/services/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";
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -61,6 +65,7 @@ v1.post("/interactive", async (req, res) => {
 
     default:
       res.sendStatus(200);
+      await int.deleteEphemeralPopup(responseUrl);
       break;
   }
 });
@@ -75,9 +80,9 @@ v1.post("/auth", (req, res) => {
   res.sendStatus(200);
 });
 
-v1.get("/test", (req, res) => {
-  console.log(req.query);
+v1.post("/test-webhook", (req, res) => {
   res.sendStatus(200);
+  axios.post(webhook_url, webhook_payload, axiosJsonHeader);
 });
 
 // listen for requests :)
@@ -125,4 +130,24 @@ const areYouSureDelete = {
       ],
     },
   ],
+};
+
+const webhook_payload = {
+  blocks: [
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `This message was sent from the ${application_name} into the ${webhook_url}\n*Thanks for playing*`,
+      },
+    },
+  ],
+};
+
+const axiosJsonHeader = {
+  headers: {
+    // Overwrite Axios's automatically set Content-Type
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + process.env.BOT_TOKEN,
+  },
 };
