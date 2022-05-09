@@ -25,8 +25,16 @@ v1.post("/interactive", async (req, res) => {
   const user_id = body.user.id;
   const channel_id = body.channel.id;
   const interactiveActions = body.actions
+  const numberOfActions = Object.keys(interactiveActions).length
   // console.log(body);
-  console.log(Object.keys(interactiveActions).length)
+  if (numberOfActions>1)
+  {
+    interactiveActions.forEach((actionBody) => {
+      console.log(actionBody.action_id)
+    })
+  }else{
+    console.log(interactiveActions[0].action_id)
+  }
   const isMember = await int.checkUserIsMember(user_id, channel_id);
   //console.log(isMember);
   if (!isMember) await int.joinChannel(channel_id);
