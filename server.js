@@ -32,7 +32,7 @@ v1.post("/interactive", async (req, res) => {
   const responseUrl = body.response_url;
   const numberOfActions = Object.keys(interactiveActions).length;
   let action_id = "";
-  console.log(body);
+  //console.log(body);
   if (numberOfActions > 1) {
     interactiveActions.forEach((actionBody) => {
       action_id = actionBody.action_id;
@@ -55,10 +55,10 @@ v1.post("/interactive", async (req, res) => {
       const messages = await int.getAllMessages(user_id, channel_id);
       const timestamps = [];
       messages.forEach((message) => {
-        console.log(message);
+        //console.log(message);
         timestamps.push(message.ts);
       });
-      console.log(timestamps);
+      //console.log(timestamps);
       await int.deleteAllMessages(timestamps, channel_id);
       await int.deleteEphemeralPopup(responseUrl);
       break;
@@ -71,12 +71,12 @@ v1.post("/interactive", async (req, res) => {
 });
 
 v1.post("/clear", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.status(200).send(areYouSureDelete);
 });
 
 v1.post("/auth", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.sendStatus(200);
 });
 

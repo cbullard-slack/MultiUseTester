@@ -37,7 +37,7 @@ let getAllMessages = async (userId, channelId) => {
       console.error(err);
     });
   try {
-    console.log(data.data.messages);
+    //console.log(data.data.messages);
     return data.data.messages;
   } catch (error) {
     console.error(error);
@@ -50,14 +50,14 @@ let deleteAllMessages = async (messageTs, channelId) => {
       ts: `${timestamp}`,
       channel: `${channelId}`,
     });
-    console.log(data);
+    //console.log(data);
     const response = await axios
       .post("https://slack.com/api/chat.delete", data, axiosEncodedHeaderUser)
       .catch((err) => {
         console.error(err);
       });
     try {
-      console.log(response);
+      //console.log(response);
     } catch (err) {
       console.error(err);
     }
@@ -78,7 +78,7 @@ let checkUserIsMember = async (userId, channelId) => {
         channels.push(element.id);
       });
     }
-    console.log(
+    //console.log(
       `Channel Data: ${channels} is of type ${typeof response.data.channels}`
     );
     if (channels.includes(channelId)) return true;
@@ -99,7 +99,7 @@ let joinChannel = async (channelId) => {
     axiosEncodedHeader
   );
   try {
-    console.log(response);
+    //console.log(response);
   } catch (err) {
     console.error(err);
   }
@@ -118,7 +118,7 @@ let deleteEphemeralPopup = async (response_url) => {
       .catch((err) => {
         console.error(err);
       });
-    console.log(response);
+    //console.log(response);
   } catch (err) {
     console.error(err);
   }
