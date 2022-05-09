@@ -24,29 +24,42 @@ v1.post("/interactive", async (req, res) => {
   const body = JSON.parse(req.body.payload);
   const user_id = body.user.id;
   const channel_id = body.channel.id;
-  const interactiveActions = body.actions
-  const numberOfActions = Object.keys(interactiveActions).length
-  // console.log(body);
-  if (numberOfActions>1)
-  {
+  const interactiveActions = body.actions;
+  const numberOfActions = Object.keys(interactiveActions).length;
+  let action_id = "";
+console.log(body);
+  if (numberOfActions > 1) {
     interactiveActions.forEach((actionBody) => {
-      console.log(actionBody.action_id)
-    })
-  }else{
-    console.log(interactiveActions[0].action_id)
+      action_id = actionBody.action_id;
+    });
+  } else {
+    action_id = interactiveActions[0].action_id;
   }
-  const isMember = await int.checkUserIsMember(user_id, channel_id);
-  //console.log(isMember);
-  if (!isMember) await int.joinChannel(channel_id);
-  const messages = await int.getAllMessages(user_id, channel_id);
-  const timestamps = [];
-  messages.forEach((message) => {
-    console.log(message)
-    timestamps.push(message.ts)
-  });
-  console.log(timestamps)
-  await int.deleteAllMessages(timestamps,channel_id)
-  res.sendStatus(200);
+
+  switch (action_id) {
+    case "decline-delete-action":
+      res.sendStatus(200);
+      break;
+
+    case "confirm-delete-action":
+      res.sendStatus(200);
+      const isMember = await int.checkUserIsMember(user_id, channel_id);
+      //console.log(isMember);
+      if (!isMember) await int.joinChannel(channel_id);
+      const messages = await int.getAllMessages(user_id, channel_id);
+      const timestamps = [];
+      messages.forEach((message) => {
+        console.log(message);
+        timestamps.push(message.ts);
+      });
+      console.log(timestamps);
+      await int.deleteAllMessages(timestamps, channel_id);
+      break;
+
+    default:
+      res.sendStatus(200);
+      break;
+  }
 });
 
 v1.post("/clear", (req, res) => {
