@@ -84,7 +84,7 @@ const areYouSureDelete = {
             emoji: true,
           },
           style: "primary",
-          action_id: "actionId-0",
+          action_id: "decline-delete-action",
         },
         {
           type: "button",
@@ -94,7 +94,7 @@ const areYouSureDelete = {
             emoji: true,
           },
           style: "danger",
-          action_id: "Confirm",
+          action_id: "confirm-delete-action",
         },
       ],
     },
