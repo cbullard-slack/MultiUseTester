@@ -8,8 +8,7 @@ const qs = require("querystring");
 const v1 = express.Router();
 
 const application_name = "Node Multi Use App";
-const webhook_url =
-  "https://hooks.slack.com/services/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";
+const webhook_url = process.env.SLACK_WEBHOOK_URL;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -81,9 +80,9 @@ v1.post("/auth", (req, res) => {
 });
 
 v1.post("/test-webhook", (req, res) => {
-  res.status(200).send('');
+  res.status(200).send("");
   axios.post(webhook_url, webhook_payload, axiosJsonHeader);
-  int.deleteEphemeralPopup(req.body.response_url)
+  int.deleteEphemeralPopup(req.body.response_url);
 });
 
 // listen for requests :)
